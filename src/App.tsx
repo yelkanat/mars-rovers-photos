@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import PhotoAndInfoCard from "./components/PhotoAndInfoCard";
+import AppBar from "./components/AppBar";
+import { Description } from "./components/Description";
+import "./App.css";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <AppBar />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <Description />
+        <PhotoAndInfoCard photos={[]} fetchProgress={"none"} />
+      </div>
+    </Provider>
   );
-}
+};
 
 export default App;
